@@ -1,0 +1,8 @@
+{
+    "sweetpad.build.xcodeWorkspacePath": "TestApp.xcodeproj/project.xcworkspace",
+    "sweetpad.build.destination": {
+        "id": "iossimulator-74BB2842-F97B-409C-83EE-8398FCE54173",
+        "type": "iOSSimulator"
+    },
+    "sweetpad.build.scheme": "TestApp"
+}
