@@ -72,32 +72,34 @@ let MockDataArr: [Film] = [
 struct ContentView: View {
 
     var body: some View {
-        NavigationStack {
-            List(MockDataArr) { item in
-                (NavigationLink(value: item) {
-                    VStack {
-                        AsyncImage(
-                            url: URL(
-                                string: item.movie_banner
-                            )
-                        ) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 300, height: 160)
-                                .clipShape(RoundedRectangle(cornerRadius: 16))
+        ZStack {
+            NavigationStack {
+                List(MockDataArr, id: \.id) { item in
+                    (NavigationLink(value: item) {
+                        VStack {
+                            AsyncImage(
+                                url: URL(
+                                    string: item.movie_banner
+                                )
+                            ) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 300, height: 160)
+                                    .clipShape(RoundedRectangle(cornerRadius: 16))
 
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        Text(item.title).font(.title3.bold())
-                    }.frame(maxWidth: .infinity)
-                })
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            Text(item.title).font(.title3.bold())
+                        }.frame(maxWidth: .infinity)
+                    })
+                }
+                .navigationDestination(for: Film.self) { data in
+                    DetailView(film: data)
+                }
+                .navigationTitle("Ghibli Films")
             }
-            .navigationDestination(for: Film.self) { data in
-                DetailView(film: data)
-            }
-            .navigationTitle("Ghibli Films")
-        }
+        }.ignoresSafeArea()
     }
 }
