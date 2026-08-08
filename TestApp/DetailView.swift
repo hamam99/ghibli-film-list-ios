@@ -32,5 +32,5 @@ struct DetailView: View {
 }
 
 #Preview {
-  DetailView(film: MockDataArr[0])
+  DetailView(film: MockFilmList[0])
 }

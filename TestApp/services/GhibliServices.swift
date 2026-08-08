@@ -26,7 +26,6 @@ struct GhibliServices {
                 .validate()
                 .serializingData()
                 .value
-            // return try JSONDecoder().decode([Film].self, from: data)
             let decodeResponse = try JSONDecoder().decode([Film].self, from: data)
             return decodeResponse
         } catch {
