@@ -14,6 +14,7 @@ struct Film: Identifiable, Hashable, Decodable {
     var release_date: String
     var running_time: String
     var url: String
+    var rt_score: String
 }
 
 struct GhibliServices {

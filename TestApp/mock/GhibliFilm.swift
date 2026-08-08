@@ -12,7 +12,9 @@ let MockFilmList: [Film] = [
         producer: "Isao Takahata",
         release_date: "1984",
         running_time: "117",
-        url: "https://ghibliapi.dev/films/86e544fd-79de-4e04-be62-5be67d8dd92e"),
+        url: "https://ghibliapi.dev/films/86e544fd-79de-4e04-be62-5be67d8dd92e",
+        rt_score: "95"
+    ),
     Film(
         id: "86e544fd-79de-4e04-be62-5be67d8dd92eXXXX",
         title: "Nausicaä of the Valley of the Wind",
@@ -26,6 +28,7 @@ let MockFilmList: [Film] = [
         producer: "Isao Takahata",
         release_date: "1984",
         running_time: "117",
-        url: "https://ghibliapi.dev/films/86e544fd-79de-4e04-be62-5be67d8dd92e"),
-
+        url: "https://ghibliapi.dev/films/86e544fd-79de-4e04-be62-5be67d8dd92e",
+        rt_score: "95"
+    ),
 ]
