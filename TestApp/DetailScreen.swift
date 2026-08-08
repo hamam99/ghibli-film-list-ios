@@ -10,7 +10,7 @@ import SwiftUI
 struct DetailScreen: App {
     var body: some Scene {
         WindowGroup {
-            DetailView(film: MockData)
+            DetailView(film: nil)
         }
     }
 }
