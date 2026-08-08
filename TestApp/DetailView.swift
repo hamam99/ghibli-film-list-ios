@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import os
 
 struct DetailView: View {
   let film: Film
+
+  let logger = Logger(subsystem: "com.hamam.TestApp", category: "App")
+
+  private let api = GhibliServices(
+
+    )
 
   var body: some View {
     ZStack {
@@ -35,7 +42,7 @@ struct DetailView: View {
           Text(film.description)
         }
       }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top).padding(12)
-    }.ignoresSafeArea()
+    }
   }
 }
 #Preview {

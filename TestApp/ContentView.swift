@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct Film: Identifiable, Hashable {
-    var id: String
-    var title: String
-    var original_title: String
-    var original_title_romanised: String
-    var image: String
-    var movie_banner: String
-    var description: String
-    var director: String
-    var producer: String
-    var release_date: String
-    var running_time: String
-    var url: String
-}
+// struct Film: Identifiable, Hashable {
+//     var id: String
+//     var title: String
+//     var original_title: String
+//     var original_title_romanised: String
+//     var image: String
+//     var movie_banner: String
+//     var description: String
+//     var director: String
+//     var producer: String
+//     var release_date: String
+//     var running_time: String
+//     var url: String
+// }
 
 let MockData = Film(
     id: "86e544fd-79de-4e04-be62-5be67d8dd92e",
@@ -71,10 +71,13 @@ let MockDataArr: [Film] = [
 
 struct ContentView: View {
 
+    private let ghibliService = GhibliServices()
+
+    @State private var listFilms: [Film] = []
     var body: some View {
         ZStack {
             NavigationStack {
-                List(MockDataArr, id: \.id) { item in
+                List(listFilms, id: \.id) { item in
                     (NavigationLink(value: item) {
                         VStack {
                             AsyncImage(
@@ -100,6 +103,13 @@ struct ContentView: View {
                 }
                 .navigationTitle("Ghibli Films")
             }
-        }.ignoresSafeArea()
+        }.task {
+            do {
+                let films = try await ghibliService.getMovies()
+                NSLog("list films : \(films)")
+                listFilms = films
+
+            } catch {}
+        }
     }
 }
