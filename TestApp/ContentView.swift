@@ -23,28 +23,32 @@ struct ContentView: View {
             } else if errorMessage != nil {
                 Text(errorMessage ?? "").font(.title2).foregroundColor(.red)
             } else {
-                List(listFilms, id: \.id) { item in
-                    NavigationLink(value: item) {
-                        VStack {
-                            AsyncImage(
-                                url: URL(
-                                    string: item.movie_banner
-                                )
-                            ) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 300, height: 160)
-                                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                ScrollView {
+                    LazyVStack {
+                        ForEach(listFilms, id: \.id) { item in
+                            NavigationLink(value: item) {
+                                VStack {
+                                    AsyncImage(
+                                        url: URL(
+                                            string: item.movie_banner
+                                        )
+                                    ) { image in
+                                        image
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 300, height: 160)
+                                            .clipShape(RoundedRectangle(cornerRadius: 16))
 
-                            } placeholder: {
-                                ProgressView()
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    Text(item.title).font(.title3.bold()).foregroundColor(.black)
+                                }.frame(maxWidth: .infinity)
                             }
-                            Text(item.title).font(.title3.bold())
-                        }.frame(maxWidth: .infinity)
+                        }
+
                     }
-                }
-                .navigationDestination(for: Film.self) { data in
+                }.navigationDestination(for: Film.self) { data in
                     DetailView(film: data)
                 }
                 .navigationTitle("Ghibli Films")
